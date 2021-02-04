@@ -26,7 +26,7 @@ private:
         struct credit_card m_card;
 public:
         CCV(const unsigned int &num = 0, const string &cvc = "00/00"): 
-                        m_card{num, cvc} {} 
+                                                m_card{num, cvc} {} 
         
         void set_card_number(const unsigned int &num)
         {
@@ -36,6 +36,16 @@ public:
         unsigned int get_card_number(void) const 
         {
                 return m_card.number;
+        }
+
+        void set_card_cvc(const string &cvc) 
+        {
+                m_card.cvc = cvc;
+        }
+
+        string get_card_cvc(void) const
+        {
+                return m_card.cvc;
         }
 
 }
