@@ -1,65 +1,45 @@
-#include <iostream>
 #include <vector>
-#include <string>
-#include "lib.h"
-#include <map>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
+struct credit_card {
+        unsigned int number;
+        vector<unsigned short> digits;
+};
 
-class Elevator {
+enum service_provider {
+        AIRLINE1 = 1,
+        AIRLINE2 = 2,
+        TnE = 3,
+        VISA = 4,
+        MASTERCARD = 5,
+        OTHER_BANK = 6,
+        OIL = 7,
+        TELECOMMUNICATIONS = 8,
+        OTHER = 9
+};
+
+class CCV {
 private:
-        map<int, unsigned int> m_passengers;
-        vector<unsigned int> m_status;
-        load m_load;
-        floor m_floor;
-        direction m_dir;
+        unsigned int m_number;
 public:
-        Elevator(const map<int, unsigned int> &passengers, const vector<unsigned int> status,
-                                                        const load &load, const floor &floor):
-                m_passengers(passengers), m_status(status), m_load(load), m_floor(floor),
-                m_dir(_NONE_) {};
+        CCV(const unsigned int &num = 0): m_number(num) {} 
         
-        void set_loadcur(const int &loadcur)
+        void set_card_number(const unsigned int &num)
         {
-                m_load.cur = loadcur;
+                m_number = num; 
         }
 
-        int get_loadcur(void) const 
+        unsigned int get_card_number(void) const 
         {
-                return m_load.cur;
+                return m_number;
         }
 
-        void set_floorcur(const int &floorcur)
-        {
-                m_floor.cur = floorcur;
-        }
-
-        int get_floorcur(void) const 
-        {
-                return m_floor.cur;
-        }
-
-        void set_dir(const enum direction &dir)
-        {
-                m_dir = dir;
-        }
-
-        enum direction get_dir(void) const 
-        {
-                return m_dir;
-        }
-
-        
-};       
+}
 
 
-int main()
+int main(void)
 {
-    vector<string> msg {"Hello", "C++", "World", "from", "VS Code", "and the C++ extension!"};
 
-    for (const string& word : msg)
-    {
-        cout << word << " ";
-    }
-    cout << endl;
 }
