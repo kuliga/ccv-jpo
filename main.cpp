@@ -1,11 +1,12 @@
 #include <vector>
+#include <string>
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
 struct credit_card {
         unsigned int number;
-        vector<unsigned short> digits;
+        string cvc;
 };
 
 enum service_provider {
@@ -22,18 +23,19 @@ enum service_provider {
 
 class CCV {
 private:
-        unsigned int m_number;
+        struct credit_card m_card;
 public:
-        CCV(const unsigned int &num = 0): m_number(num) {} 
+        CCV(const unsigned int &num = 0, const string &cvc = "00/00"): 
+                        m_card{num, cvc} {} 
         
         void set_card_number(const unsigned int &num)
         {
-                m_number = num; 
+                m_card.number = num; 
         }
 
         unsigned int get_card_number(void) const 
         {
-                return m_number;
+                return m_card.number;
         }
 
 }
