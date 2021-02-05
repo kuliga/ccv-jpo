@@ -107,26 +107,30 @@ public:
         }
 };
 
-void menu(void)
+void about_author(void)
 {
+        cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
+        endl << "Tutor: dr inż. Rafał Frączek" << endl;  
+}
+
+unsigned short menu(void)
+{
+        unsigned short option;
         cout << "Menu" << endl << "What would you like to do? Type in appropriate number." << 
         endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
                 " will be valid" << endl << "4. About" << endl << "5. Exit" << endl;
+
+        cin >> option;
+        return option;
 }
 
 int main(void)
 {
+        about_author();
         class CCV user_card;
-        string str;
 
-        cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
-        endl << "Tutor: dr inż. Rafał Frączek" << endl;  
+        unsigned short option = menu();
 
-        menu();
-
-
-        
-        cin >> str;
         user_card.set_card_number(str);
         
         cout << "Menu" << endl << "Enter your credit card's number here: " << endl;
