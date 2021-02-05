@@ -29,10 +29,8 @@ public:
                                                 m_card{num, cvc} {} 
         
         void set_card_number(const string &num)
-        {
-                
-                
-                if ((num.size() == 16) && )
+        {       
+                if ((num.size() == 16) && (validate_input(num)))
                         m_card.number = num; 
                 else
                         cout << "Invalid input!" << endl;
@@ -45,7 +43,8 @@ public:
 
         void set_card_cvc(const string &cvc) 
         {
-                m_card.cvc = cvc;
+                if ((cvc.size() == 4) && (validate_input(cvc)))
+                        m_card.cvc = cvc;
         }
 
         string get_card_cvc(void) const
