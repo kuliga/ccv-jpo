@@ -55,7 +55,7 @@ public:
                 if ((date.size() == 4) && (validate_input(date)))
                         m_card.date = date;
                 else
-                        cout << "Invalid input!" << endl;
+                        cout << "\nInvalid input!" << endl;
         }
 
         string get_card_date(void) const
@@ -112,15 +112,18 @@ void about(void)
         endl << "Tutor: dr inż. Rafał Frączek\n" << endl;  
 }
 
-string user_menu(void)
+short user_menu(void)
 {
         string option;
         cout << "\nMenu" << endl << "What would you like to do? Type in appropriate number.\n" << 
         endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
                 " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
-
+        
         cin >> option;
-        return option;
+        if ((option.size() == 1) && (validate_input(option)))
+                return stoi(option);
+        else   
+                return 0;
 }
 
 int main(void)
@@ -132,9 +135,10 @@ int main(void)
         class CCV user_card;
 
         while (1) {
-                str = user_menu();
+                //str = user_menu();
                 //if (!(validate_input(str)) && (str.size() == 1)) {
-                        option = stoi(str);
+                        //option = stoi(str);
+                        option = user_menu();
                         switch (option) {
                         case 0:
                                 cout << "Invalid input!" << endl;
