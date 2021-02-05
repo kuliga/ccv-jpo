@@ -5,8 +5,7 @@
 using namespace std;
 
 struct credit_card {
-        string number;
-        string cvc;
+        string number, cvc;
 };
 
 enum service_provider {
@@ -54,13 +53,13 @@ public:
                 return m_card.cvc;
         }
 private:
-        vector<short> num_to_vec(void)
+        vector<short> stov(const string &str)
         {
-                vector<short> num_vec;
-                for (const auto i: m_card.number)
-                        num_vec.push_back(i - '0');
+                vector<short> vec;
+                for (const auto i: str)
+                        vec.push_back(i - '0');
                 
-                return num_vec;
+                return vec;
         }
 
         bool validate_input(const string &input)
@@ -74,12 +73,39 @@ private:
                 return true;
         }
 
-        bool algo_lohn(vector<short> num)
+        size_t vec_sum(const vector<short> &vec)
         {
-                
+                size_t sum;
+                for (const auto i: vec)
+                        sum += vec[i];
+                return sum;
         }
 
-}
+        bool algo_lohn(void)
+        {
+                vector<short> digits = stov(m_card.number);
+                
+                bool is_odd = true;
+                for (const auto i: digits)
+                        if ((is_odd) && (digits[i] > 4)) {
+                                digits[i] *= 2;
+                                digits[i] = 1 + digits[i] % 10;
+                                is_odd = false;
+                        } else if ((is_odd) && (digits[i] < 5)) {
+                                digits[i] *= 2;
+                                is_odd = false;
+                        } else if (!is_odd) {
+                                is_odd = true;
+                        }
+                
+                size_t sum = vec_sum(digits);
+                if (sum % 10)
+                        return false;
+                else 
+                        return true;
+        }
+
+};
 
 
 int main(void)
