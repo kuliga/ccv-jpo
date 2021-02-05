@@ -4,7 +4,7 @@
 using namespace std;
 
 struct credit_card {
-        string number, cvc;
+        string number, date;
 };
 
 enum service_provider {
@@ -19,12 +19,23 @@ enum service_provider {
         OTHER = 9
 };
 
+bool validate_input(const string &input)
+        {
+                for (const auto i: input) 
+                        if ((i > 57) && (i < 48))
+                                return false;
+                        else
+                                continue;
+                
+                return true;
+        }
+
 class CCV {
 private:
         struct credit_card m_card;
 public:
-        CCV(const string &num = "0000000000000000", const string &cvc = "0000"): 
-                                                        m_card{num, cvc} {} 
+        CCV(const string &num = "0000000000000000", const string &date = "0000"): 
+                                                        m_card{num, date} {} 
         
         void set_card_number(const string &num)
         {       
@@ -39,17 +50,17 @@ public:
                 return m_card.number;
         }
 
-        void set_card_cvc(const string &cvc) 
+        void set_card_date(const string &date) 
         {
-                if ((cvc.size() == 4) && (validate_input(cvc)))
-                        m_card.cvc = cvc;
+                if ((date.size() == 4) && (validate_input(date)))
+                        m_card.date = date;
                 else
                         cout << "Invalid input!" << endl;
         }
 
-        string get_card_cvc(void) const
+        string get_card_date(void) const
         {
-                return m_card.cvc;
+                return m_card.date;
         }
 //private:
         vector<short> stov(const string &str)
@@ -61,20 +72,9 @@ public:
                 return vec;
         }
 
-        bool validate_input(const string &input)
+        unsigned short vec_sum(const vector<short> &vec)
         {
-                for (const auto i: input) 
-                        if ((i > 57) && (i < 48))
-                                return false;
-                        else
-                                continue;
-                
-                return true;
-        }
-
-        unsigned int vec_sum(const vector<short> &vec)
-        {
-                unsigned int sum = 0;
+                unsigned short sum = 0;
                 for (const auto i: vec)
                         sum += vec[i];
                 
@@ -83,9 +83,7 @@ public:
 
         bool algo_lohn(void)
         {
-                //string num = get_card_number();
-                vector<short> digits = stov(m_card.number);
-                //vector<short> digits = stov(num);
+                vector<short> digits = stov(get_card_number());
 
                 bool is_odd = true;
                 for (const auto i: digits)
@@ -100,7 +98,7 @@ public:
                                 is_odd = true;
                         }
                 
-                unsigned int sum = vec_sum(digits);
+                unsigned short sum = vec_sum(digits);
                 if (sum % 10)
                         return false;
                 else 
@@ -110,12 +108,16 @@ public:
 
 void hmi(void)
 {
-        
+        cout << "Menu" << endl << "Enter your credit card's number here" << endl;
 }
 
 
 int main(void)
 {
+        class CCV user_card;
+        cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
+        endl << "Tutor: dr inż. Rafał Frączek" << endl;  
+
         class CCV my_card("4874742066698715", "0922");
         //class CCV example("6111111111111116", "0922");
         bool check = my_card.algo_lohn();
@@ -127,8 +129,6 @@ int main(void)
         else 
                 cout << "not sztos" << endl;
         //return 0;
-        cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
-        endl << "Tutor: dr inż. Rafał Frączek" << endl;  
 
 
 
