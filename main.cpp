@@ -1,7 +1,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 struct credit_card {
@@ -73,9 +72,9 @@ public:
                 return true;
         }
 
-        size_t vec_sum(const vector<short> &vec)
+        unsigned int vec_sum(const vector<short> &vec)
         {
-                size_t sum;
+                unsigned int sum = 0;
                 for (const auto i: vec)
                         sum += vec[i];
                 
@@ -84,8 +83,10 @@ public:
 
         bool algo_lohn(void)
         {
+                //string num = get_card_number();
                 vector<short> digits = stov(m_card.number);
-                
+                //vector<short> digits = stov(num);
+
                 bool is_odd = true;
                 for (const auto i: digits)
                         if ((is_odd) && (digits[i] > 4)) {
@@ -99,25 +100,36 @@ public:
                                 is_odd = true;
                         }
                 
-                size_t sum = vec_sum(digits);
+                unsigned int sum = vec_sum(digits);
                 if (sum % 10)
                         return false;
                 else 
                         return true;
         }
-
 };
+
+void hmi(void)
+{
+        
+}
 
 
 int main(void)
 {
-        //class CCV my_card("4874742066698715", "0922");
-        class CCV example("6111111111111116");
-        //bool check = my_card.algo_lohn();
-                bool check = example.algo_lohn();
+        class CCV my_card("4874742066698715", "0922");
+        //class CCV example("6111111111111116", "0922");
+        bool check = my_card.algo_lohn();
+        //bool check = example.algo_lohn();
 
+        //example.panel();
         if (check)
-                cout << "sztos";
-        
-        return 0;
+                cout << "sztos" << endl;
+        else 
+                cout << "not sztos" << endl;
+        //return 0;
+        cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
+        endl << "Tutor: dr inż. Rafał Frączek" << endl;  
+
+
+
 }
