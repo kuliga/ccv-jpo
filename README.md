@@ -1,2 +1,2 @@
-# elevator-jpo
-Elevator's control system written in C++ using OO approach.
+# ccv-jpo
+Credit card validator programme written in C++ using OO approach.
