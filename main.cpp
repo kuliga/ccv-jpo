@@ -62,7 +62,7 @@ public:
         {
                 return m_card.date;
         }
-//private:
+        
         vector<short> stov(const string &str)
         {
                 vector<short> vec;
@@ -81,10 +81,8 @@ public:
                 return sum;
         }
 
-        bool algo_lohn(void)
+        bool algo_lohn(vector<short> &digits)
         {
-                vector<short> digits = stov(get_card_number());
-
                 bool is_odd = true;
                 for (const auto i: digits)
                         if ((is_odd) && (digits[i] > 4)) {
@@ -103,6 +101,14 @@ public:
                         return false;
                 else 
                         return true;
+        }
+
+        bool validate_card(void)
+        {
+                vector<short> digits = stov(get_card_number());
+
+                return algo_lohn(digits);
+
         }
 };
 
@@ -135,33 +141,29 @@ int main(void)
         class CCV user_card;
 
         while (1) {
-                //str = user_menu();
-                //if (!(validate_input(str)) && (str.size() == 1)) {
-                        //option = stoi(str);
-                        option = user_menu();
-                        switch (option) {
-                        case 0:
-                                cout << "Invalid input!" << endl;
-                                break;
-                        case 1:
-                                cout << "Enter credit card's number: ";
-                                cin >> str;
-                                user_card.set_card_number(str);
-                                //TODO: make appropriate frontend
-                                break;
-                        case 2:
-                                cout << "Enter credit card's date (numbers only): ";
-                                cin >> str;
-                                user_card.set_card_date(str);
-                                //TODO: make appropriate frontend
-                                break;
-                        case 3:
-                                about();
-                                break;
-                        case 4:
-                                goto exit;                
-                        }
-                //}
+                option = user_menu();
+                switch (option) {
+                case 0:
+                        cout << "Invalid input!" << endl;
+                        break;
+                case 1:
+                        cout << "Enter credit card's number: ";
+                        cin >> str;
+                        user_card.set_card_number(str);
+                        //TODO: make appropriate frontend
+                        break;
+                case 2:
+                        cout << "Enter credit card's date (numbers only): ";
+                        cin >> str;
+                        user_card.set_card_date(str);
+                        //TODO: make appropriate frontend
+                        break;
+                case 3:
+                        about();
+                        break;
+                case 4:
+                        goto exit;                
+                }
         }
                 
 exit:
