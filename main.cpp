@@ -20,16 +20,15 @@ enum service_provider {
 };
 
 bool validate_input(const string &input)
-        {
-                for (const auto i: input) 
-                        if ((i > 57) && (i < 48))
-                                return false;
-                        else
-                                continue;
-                
-                return true;
-        }
-
+{
+        for (const auto i: input) 
+                if ((i > 57) && (i < 48))
+                        return false;
+                else
+                        continue;
+        
+        return true;
+}
 
 class CCV {
 private:
@@ -43,7 +42,7 @@ public:
                 if ((num.size() == 16) && (validate_input(num)))
                         m_card.number = num; 
                 else
-                        cout << "Invalid input!" << endl;
+                        cout << "\nInvalid input!" << endl;
         }
 
         string get_card_number(void) const 
@@ -107,18 +106,18 @@ public:
         }
 };
 
-void about_author(void)
+void about(void)
 {
-        cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
-        endl << "Tutor: dr inż. Rafał Frączek" << endl;  
+        cout << "\nCredit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
+        endl << "Tutor: dr inż. Rafał Frączek\n" << endl;  
 }
 
-unsigned short menu(void)
+string user_menu(void)
 {
-        unsigned short option;
-        cout << "Menu" << endl << "What would you like to do? Type in appropriate number." << 
+        string option;
+        cout << "\nMenu" << endl << "What would you like to do? Type in appropriate number.\n" << 
         endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
-                " will be valid" << endl << "4. About" << endl << "5. Exit" << endl;
+                " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
 
         cin >> option;
         return option;
@@ -126,17 +125,42 @@ unsigned short menu(void)
 
 int main(void)
 {
-        about_author();
+        about();
+
+        string str;
+        unsigned short option;
         class CCV user_card;
 
-        unsigned short option = menu();
-
-        user_card.set_card_number(str);
-        
-        cout << "Menu" << endl << "Enter your credit card's number here: " << endl;
-        cin >> str;
-        user_card.set_card_number(str);
-
+        while (1) {
+                str = user_menu();
+                //if (!(validate_input(str)) && (str.size() == 1)) {
+                        option = stoi(str);
+                        switch (option) {
+                        case 0:
+                                cout << "Invalid input!" << endl;
+                                break;
+                        case 1:
+                                cout << "Enter credit card's number: ";
+                                cin >> str;
+                                user_card.set_card_number(str);
+                                //TODO: make appropriate frontend
+                                break;
+                        case 2:
+                                cout << "Enter credit card's date (numbers only): ";
+                                cin >> str;
+                                user_card.set_card_date(str);
+                                //TODO: make appropriate frontend
+                                break;
+                        case 3:
+                                about();
+                                break;
+                        case 4:
+                                goto exit;                
+                        }
+                //}
+        }
+                
+exit:
         class CCV my_card("4874742066698715", "0922");
         //class CCV example("6111111111111116", "0922");
         bool check = my_card.algo_lohn();
@@ -148,7 +172,6 @@ int main(void)
         else 
                 cout << "not sztos" << endl;
         //return 0;
-
 
 
 }
