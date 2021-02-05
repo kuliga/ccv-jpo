@@ -25,12 +25,17 @@ class CCV {
 private:
         struct credit_card m_card;
 public:
-        CCV(const string &num = "0", const string &cvc = "00/00"): 
+        CCV(const string &num = "0000000000000000", const string &cvc = "0000"): 
                                                 m_card{num, cvc} {} 
         
         void set_card_number(const string &num)
         {
-                m_card.number = num; 
+                
+                
+                if ((num.size() == 16) && )
+                        m_card.number = num; 
+                else
+                        cout << "Invalid input!" << endl;
         }
 
         string get_card_number(void) const 
@@ -57,7 +62,21 @@ private:
                 return num_vec;
         }
 
-        
+        bool validate_input(const string &input)
+        {
+                for (const auto i: input) 
+                        if ((i > 57) && (i < 48))
+                                return false;
+                        else
+                                continue;
+                
+                return true;
+        }
+
+        bool algo_lohn(vector<short> num)
+        {
+
+        }
 
 }
 
