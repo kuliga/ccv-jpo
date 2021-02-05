@@ -30,6 +30,7 @@ bool validate_input(const string &input)
                 return true;
         }
 
+
 class CCV {
 private:
         struct credit_card m_card;
@@ -106,17 +107,31 @@ public:
         }
 };
 
-void hmi(void)
+void menu(void)
 {
-        cout << "Menu" << endl << "Enter your credit card's number here" << endl;
+        cout << "Menu" << endl << "What would you like to do? Type in appropriate number." << 
+        endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
+                " will be valid" << endl << "4. About" << endl << "5. Exit" << endl;
 }
-
 
 int main(void)
 {
         class CCV user_card;
+        string str;
+
         cout << "Credit card validator" << endl << "Made by Jan Kuliga (3 EiT PL)" <<
         endl << "Tutor: dr inż. Rafał Frączek" << endl;  
+
+        menu();
+
+
+        
+        cin >> str;
+        user_card.set_card_number(str);
+        
+        cout << "Menu" << endl << "Enter your credit card's number here: " << endl;
+        cin >> str;
+        user_card.set_card_number(str);
 
         class CCV my_card("4874742066698715", "0922");
         //class CCV example("6111111111111116", "0922");
