@@ -52,7 +52,7 @@ public:
         {
                 return m_card.cvc;
         }
-private:
+//private:
         vector<short> stov(const string &str)
         {
                 vector<short> vec;
@@ -78,6 +78,7 @@ private:
                 size_t sum;
                 for (const auto i: vec)
                         sum += vec[i];
+                
                 return sum;
         }
 
@@ -110,5 +111,13 @@ private:
 
 int main(void)
 {
+        //class CCV my_card("4874742066698715", "0922");
+        class CCV example("6111111111111116");
+        //bool check = my_card.algo_lohn();
+                bool check = example.algo_lohn();
 
+        if (check)
+                cout << "sztos";
+        
+        return 0;
 }
