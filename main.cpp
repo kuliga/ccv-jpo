@@ -5,7 +5,7 @@
 using namespace std;
 
 struct credit_card {
-        unsigned int number;
+        string number;
         string cvc;
 };
 
@@ -25,15 +25,15 @@ class CCV {
 private:
         struct credit_card m_card;
 public:
-        CCV(const unsigned int &num = 0, const string &cvc = "00/00"): 
+        CCV(const string &num = "0", const string &cvc = "00/00"): 
                                                 m_card{num, cvc} {} 
         
-        void set_card_number(const unsigned int &num)
+        void set_card_number(const string &num)
         {
                 m_card.number = num; 
         }
 
-        unsigned int get_card_number(void) const 
+        string get_card_number(void) const 
         {
                 return m_card.number;
         }
@@ -47,6 +47,17 @@ public:
         {
                 return m_card.cvc;
         }
+private:
+        vector<short> num_to_vec(void)
+        {
+                vector<short> num_vec;
+                for (const auto i: m_card.number)
+                        num_vec.push_back(i - '0');
+                
+                return num_vec;
+        }
+
+        
 
 }
 
