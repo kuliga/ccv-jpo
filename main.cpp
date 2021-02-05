@@ -26,7 +26,7 @@ private:
         struct credit_card m_card;
 public:
         CCV(const string &num = "0000000000000000", const string &cvc = "0000"): 
-                                                m_card{num, cvc} {} 
+                                                        m_card{num, cvc} {} 
         
         void set_card_number(const string &num)
         {       
@@ -45,6 +45,8 @@ public:
         {
                 if ((cvc.size() == 4) && (validate_input(cvc)))
                         m_card.cvc = cvc;
+                else
+                        cout << "Invalid input!" << endl;
         }
 
         string get_card_cvc(void) const
@@ -74,7 +76,7 @@ private:
 
         bool algo_lohn(vector<short> num)
         {
-
+                
         }
 
 }
