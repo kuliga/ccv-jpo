@@ -28,7 +28,7 @@ public:
                                                         m_card {num, date} {} 
         
         
-        bool validate_input(const string &input)
+        bool check_input(const string &input)
         {       
                 for (const auto i: input) 
                         if ((i > 57) || (i < 48))
@@ -41,7 +41,7 @@ public:
         
         bool set_card_number(const string &num)
         {       
-                if ((num.size() == 16) && (validate_input(num))) {
+                if ((num.size() == 16) && (check_input(num))) {
                         m_card.number = num;
                         return true; 
                 } else {
@@ -56,7 +56,7 @@ public:
 
         bool set_card_date(const string &date) 
         {
-                if ((date.size() == 4) && (validate_input(date))) {
+                if ((date.size() == 4) && (check_input(date))) {
                         m_card.date = date;
                         return true;
                 } else {
@@ -109,7 +109,7 @@ public:
                         return true;
         }
 
-        bool validate_card(void)
+        bool check_card(void)
         {
                 vector<short> digits = stov(get_card_number());
 
@@ -162,7 +162,7 @@ public:
 
         void validation_info(void)
         {
-                if (!validate_card()) {
+                if (!check_card()) {
                         cout << "\nValidation failed!" << endl;
                 } else {
                         cout << "\nValidation passed!" << endl;
@@ -176,7 +176,7 @@ public:
         {
                 string option;
                 cin >> option;
-                if ((option.size() == 1) && (validate_input(option)))
+                if ((option.size() == 1) && (check_input(option)))
                         return stoi(option);
                 else   
                         return 0;
@@ -195,8 +195,6 @@ void menu_text(void)
         endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
                 " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
 }
-
-
 
 int main(void)
 {
