@@ -124,7 +124,7 @@ public:
                         cout << "AIRLINE2" << endl;
                         break;
                 case TnE:
-                        cout << "Travel and Explore" << endl;
+                        cout << "Travel and Expense" << endl;
                         break;
                 case VISA:
                         cout << "VISA" << endl;
@@ -149,14 +149,20 @@ public:
 
         void card_info(void)
         {
-                
+                cout << "Bank ID number: " << m_card.number.substr(0, 6) << endl;
+                cout << "Account's ID number: " << m_card.number.substr(6, 9) << endl;
+                cout << "Control digit: " << m_card.number.substr(15, 1) << endl;
         }
 
         void validation_info(void)
         {
-                if (!validate_card())
+                if (!validate_card()) {
                         cout << "\nValidation failed!" << endl;
-                else
+                } else {
+                        cout << "\nValidation passed!" << endl;
+                        service_provider_info();
+                        card_info();
+                }
 
         }
 };
@@ -218,14 +224,16 @@ int main(void)
 exit:
         class CCV my_card("4874742066698715", "0922");
         //class CCV example("6111111111111116", "0922");
-        bool check = my_card.validate_card();
+        //bool check = my_card.validate_info();
         //bool check = example.algo_lohn();
 
+        my_card.validation_info();
+
         //example.panel();
-        if (check)
+        /*if (check)
                 cout << "sztos" << endl;
         else 
-                cout << "not sztos" << endl;
+                cout << "not sztos" << endl;*/
         //return 0;
 
 
