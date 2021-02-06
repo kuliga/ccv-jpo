@@ -37,12 +37,14 @@ public:
         CCV(const string &num = "0000000000000000", const string &date = "0000"): 
                                                         m_card{num, date} {} 
         
-        void set_card_number(const string &num)
+        bool set_card_number(const string &num)
         {       
-                if ((num.size() == 16) && (validate_input(num)))
-                        m_card.number = num; 
-                else
-                        cout << "\nInvalid input!" << endl;
+                if ((num.size() == 16) && (validate_input(num))) {
+                        m_card.number = num;
+                        return true; 
+                } else {
+                        return false;
+                }
         }
 
         string get_card_number(void) const 
@@ -50,12 +52,14 @@ public:
                 return m_card.number;
         }
 
-        void set_card_date(const string &date) 
+        bool set_card_date(const string &date) 
         {
-                if ((date.size() == 4) && (validate_input(date)))
+                if ((date.size() == 4) && (validate_input(date))) {
                         m_card.date = date;
-                else
-                        cout << "\nInvalid input!" << endl;
+                        return true;
+                } else {
+                        return false;
+                }
         }
 
         string get_card_date(void) const
@@ -149,7 +153,7 @@ public:
 
         void card_info(void)
         {
-                cout << "Bank ID number: " << m_card.number.substr(0, 6) << endl;
+                cout << "Bank's ID number: " << m_card.number.substr(0, 6) << endl;
                 cout << "Account's ID number: " << m_card.number.substr(6, 9) << endl;
                 cout << "Control digit: " << m_card.number.substr(15, 1) << endl;
         }
@@ -204,14 +208,18 @@ int main(void)
                 case 1:
                         cout << "Enter credit card's number: ";
                         cin >> str;
-                        user_card.set_card_number(str);
-                        //TODO: make appropriate frontend
+                        if (user_card.set_card_number(str))
+                                user_card.validation_info();
+                        else 
+                                cout << "Invalid card number!" << endl;
                         break;
                 case 2:
                         cout << "Enter credit card's date (numbers only): ";
                         cin >> str;
-                        user_card.set_card_date(str);
-                        //TODO: make appropriate frontend
+                        if (user_card.set_card_date(str))
+                               user_card.validation_info();
+                        else 
+                                cout << "Invalid card's date!" << endl;
                         break;
                 case 3:
                         about();
