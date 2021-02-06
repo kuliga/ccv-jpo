@@ -178,7 +178,7 @@ public:
                 else if ((y - yr) == 0 && (m - mt >= 0)) 
                         return (m - mt);
                 else
-                        return (y - yr) * 12 - (m - mt);          
+                        return (y - yr) * 12 + (m - mt);          
         }
 
         short option(void)
@@ -232,7 +232,7 @@ int main(void)
                         cout << "Enter credit card's date (numbers only): ";
                         cin >> str;
                         if (user_card.set_card_date(str))
-                                user_card.validation_info();
+                                cout << user_card.check_date(1, 21);
                         else 
                                 cout << "Invalid card's date!" << endl;
                         break;
