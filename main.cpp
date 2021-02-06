@@ -225,24 +225,7 @@ int main(void)
                         about();
                         break;
                 case 4:
-                        goto exit;                
+                        return 0;              
                 }
         }
-                
-exit:
-        class CCV my_card("4874742066698715", "0922");
-        //class CCV example("6111111111111116", "0922");
-        //bool check = my_card.validate_info();
-        //bool check = example.algo_lohn();
-
-        my_card.validation_info();
-
-        //example.panel();
-        /*if (check)
-                cout << "sztos" << endl;
-        else 
-                cout << "not sztos" << endl;*/
-        //return 0;
-
-
 }
