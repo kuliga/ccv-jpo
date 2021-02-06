@@ -15,7 +15,7 @@ enum service_provider {
         MASTERCARD = 5,
         OTHER_BANK = 6,
         OIL = 7,
-        TELECOMMUNICATIONS = 8,
+        TELCOM = 8,
         OTHER = 9
 };
 
@@ -109,6 +109,56 @@ public:
 
                 return algo_lohn(digits);
         }
+
+        void service_provider_info(void)
+        {
+                cout << "Service provider: ";
+
+                char c = m_card.number.front();
+                short d = stoi(&c);
+                switch (d) {
+                case AIRLINE1:
+                        cout << "AIRLINE1" << endl;
+                        break;
+                case AIRLINE2: 
+                        cout << "AIRLINE2" << endl;
+                        break;
+                case TnE:
+                        cout << "Travel and Explore" << endl;
+                        break;
+                case VISA:
+                        cout << "VISA" << endl;
+                        break;
+                case MASTERCARD:
+                        cout << "MASTERCARD" << endl;
+                        break;
+                case OTHER_BANK:
+                        cout << "Bank" << endl;
+                        break;
+                case OIL:
+                        cout << "Oil company" << endl;
+                        break;
+                case TELCOM:
+                        cout << "TELCOM" << endl;
+                        break;
+                case OTHER:
+                        cout << "Custom" << endl;
+                        break;
+                }
+        }
+
+        void card_info(void)
+        {
+                
+        }
+
+        void validation_info(void)
+        {
+                if (!validate_card())
+                        cout << "\nValidation failed!" << endl;
+                else
+
+        }
 };
 
 void about(void)
@@ -143,9 +193,6 @@ int main(void)
                 option = user_menu();
                 switch (option) {
                 default:
-                        cout << "Invalid input!" << endl;
-                        break;
-                case 0:
                         cout << "Invalid input!" << endl;
                         break;
                 case 1:
