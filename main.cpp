@@ -173,7 +173,7 @@ public:
                 short m = stoi(get_card_date().substr(0, 2));
                 short y = stoi(get_card_date().substr(2, 2));
 
-                if (y - yr <= 0) 
+                if (y - yr < 0) 
                         return -1;
                 else if ((y - yr) == 0 && (m - mt >= 0)) 
                         return (m - mt);
