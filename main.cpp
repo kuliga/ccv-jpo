@@ -116,7 +116,7 @@ public:
         {
                 cout << "Service provider: ";
 
-                char c = m_card.number.front();
+                char c = get_card_number().front();
                 short d = stoi(&c);
                 switch (d) {
                 case AIRLINE1:
@@ -168,7 +168,7 @@ public:
 
         }
 
-        short check_date(short mt, short yr)
+        short check_date(const short &mt, const short &yr)
         {
                 short m = stoi(get_card_date().substr(0, 2));
                 short y = stoi(get_card_date().substr(2, 2));
@@ -179,6 +179,16 @@ public:
                         return (m - mt);
                 else
                         return (y - yr) * 12 + (m - mt);          
+        }
+
+        void date_info(const short &mt, const short &yr)
+        {
+                short date = check_date(mt, yr);
+                if (date == -1)
+                        cout << "Your card is not valid anymore!" << endl;
+                else 
+                        cout << "Your card will be valid for next " << date << " months!" << endl;
+                
         }
 
         short option(void)
@@ -232,7 +242,7 @@ int main(void)
                         cout << "Enter credit card's date (numbers only): ";
                         cin >> str;
                         if (user_card.set_card_date(str))
-                                cout << user_card.check_date(1, 21);
+                                user_card.date_info(1, 21);
                         else 
                                 cout << "Invalid card's date!" << endl;
                         break;
