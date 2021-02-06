@@ -3,26 +3,22 @@
 #include <iostream>
 using namespace std;
 
-struct credit_card {
-        string number, date;
-};
-
-enum service_provider {
-        AIRLINE1 = 1,
-        AIRLINE2 = 2,
-        TnE = 3,
-        VISA = 4,
-        MASTERCARD = 5,
-        OTHER_BANK = 6,
-        OIL = 7,
-        TELCOM = 8,
-        OTHER = 9
-};
-
-
 class CCV {
 private:
-        struct credit_card m_card;
+        struct credit_card { 
+                string number, date;
+        } m_card;
+        enum service_provider {
+                AIRLINE1 = 1,
+                AIRLINE2 = 2,
+                TnE = 3,
+                VISA = 4,
+                MASTERCARD = 5,
+                OTHER_BANK = 6,
+                OIL = 7,
+                TELCOM = 8,
+                OTHER = 9
+        };
 public:
         CCV(const string &num = "0000000000000000", const string &date = "0000"): 
                                                         m_card {num, date} {} 
