@@ -172,13 +172,9 @@ public:
 
         }
 
-        short menu (void)
+        short option(void)
         {
                 string option;
-                cout << "\nMenu" << endl << "What would you like to do? Type in appropriate number.\n" << 
-                endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
-                        " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
-                
                 cin >> option;
                 if ((option.size() == 1) && (validate_input(option)))
                         return stoi(option);
@@ -193,6 +189,13 @@ void about(void)
         endl << "Tutor: dr inż. Rafał Frączek\n" << endl;  
 }
 
+void menu_text(void)
+{
+        cout << "\nMenu" << endl << "What would you like to do? Type in appropriate number.\n" << 
+        endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
+                " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
+}
+
 
 
 int main(void)
@@ -204,7 +207,8 @@ int main(void)
         class CCV user_card;
 
         while (1) {
-                option = user_card.menu();
+                menu_text();
+                option = user_card.option();
                 switch (option) {
                 default:
                         cout << "Invalid input!" << endl;
