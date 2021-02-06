@@ -108,7 +108,6 @@ public:
                 vector<short> digits = stov(get_card_number());
 
                 return algo_lohn(digits);
-
         }
 };
 
@@ -143,6 +142,9 @@ int main(void)
         while (1) {
                 option = user_menu();
                 switch (option) {
+                default:
+                        cout << "Invalid input!" << endl;
+                        break;
                 case 0:
                         cout << "Invalid input!" << endl;
                         break;
