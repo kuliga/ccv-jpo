@@ -20,9 +20,9 @@ enum service_provider {
 };
 
 bool validate_input(const string &input)
-{
+{       
         for (const auto i: input) 
-                if ((i > 57) && (i < 48))
+                if ((i > 57) || (i < 48))
                         return false;
                 else
                         continue;
@@ -171,7 +171,7 @@ int main(void)
 exit:
         class CCV my_card("4874742066698715", "0922");
         //class CCV example("6111111111111116", "0922");
-        bool check = my_card.algo_lohn();
+        bool check = my_card.validate_card();
         //bool check = example.algo_lohn();
 
         //example.panel();
