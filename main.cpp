@@ -19,16 +19,6 @@ enum service_provider {
         OTHER = 9
 };
 
-bool validate_input(const string &input)
-{       
-        for (const auto i: input) 
-                if ((i > 57) || (i < 48))
-                        return false;
-                else
-                        continue;
-        
-        return true;
-}
 
 class CCV {
 private:
@@ -36,6 +26,18 @@ private:
 public:
         CCV(const string &num = "0000000000000000", const string &date = "0000"): 
                                                         m_card {num, date} {} 
+        
+        
+        bool validate_input(const string &input)
+        {       
+                for (const auto i: input) 
+                        if ((i > 57) || (i < 48))
+                                return false;
+                        else
+                                continue;
+                
+                return true;
+        }
         
         bool set_card_number(const string &num)
         {       
@@ -169,6 +171,20 @@ public:
                 }
 
         }
+
+        short menu (void)
+        {
+                string option;
+                cout << "\nMenu" << endl << "What would you like to do? Type in appropriate number.\n" << 
+                endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
+                        " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
+                
+                cin >> option;
+                if ((option.size() == 1) && (validate_input(option)))
+                        return stoi(option);
+                else   
+                        return 0;
+        }
 };
 
 void about(void)
@@ -177,19 +193,7 @@ void about(void)
         endl << "Tutor: dr inż. Rafał Frączek\n" << endl;  
 }
 
-short user_menu(void)
-{
-        string option;
-        cout << "\nMenu" << endl << "What would you like to do? Type in appropriate number.\n" << 
-        endl << "1. Validate credit card" << endl << "2. Check for how long your credit card" 
-                " will be valid" << endl << "3. About" << endl << "4. Exit\n" << endl;
-        
-        cin >> option;
-        if ((option.size() == 1) && (validate_input(option)))
-                return stoi(option);
-        else   
-                return 0;
-}
+
 
 int main(void)
 {
@@ -200,7 +204,7 @@ int main(void)
         class CCV user_card;
 
         while (1) {
-                option = user_menu();
+                option = user_card.menu();
                 switch (option) {
                 default:
                         cout << "Invalid input!" << endl;
