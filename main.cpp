@@ -35,7 +35,7 @@ private:
         struct credit_card m_card;
 public:
         CCV(const string &num = "0000000000000000", const string &date = "0000"): 
-                                                        m_card{num, date} {} 
+                                                        m_card {num, date} {} 
         
         bool set_card_number(const string &num)
         {       
@@ -217,7 +217,7 @@ int main(void)
                         cout << "Enter credit card's date (numbers only): ";
                         cin >> str;
                         if (user_card.set_card_date(str))
-                               user_card.validation_info();
+                                user_card.validation_info();
                         else 
                                 cout << "Invalid card's date!" << endl;
                         break;
