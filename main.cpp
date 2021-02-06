@@ -105,7 +105,7 @@ public:
                         return true;
         }
 
-        bool check_card(void)
+        bool validate_card(void)
         {
                 vector<short> digits = stov(get_card_number());
 
@@ -151,14 +151,14 @@ public:
 
         void card_info(void)
         {
-                cout << "Bank's ID number: " << m_card.number.substr(0, 6) << endl;
-                cout << "Account's ID number: " << m_card.number.substr(6, 9) << endl;
-                cout << "Control digit: " << m_card.number.substr(15, 1) << endl;
+                cout << "Bank's ID number: " << get_card_number().substr(0, 6) << endl;
+                cout << "Account's ID number: " << get_card_number().substr(6, 9) << endl;
+                cout << "Control digit: " << get_card_number().substr(15, 1) << endl;
         }
 
         void validation_info(void)
         {
-                if (!check_card()) {
+                if (!validate_card()) {
                         cout << "\nValidation failed!" << endl;
                 } else {
                         cout << "\nValidation passed!" << endl;
@@ -166,6 +166,19 @@ public:
                         card_info();
                 }
 
+        }
+
+        short check_date(short mt, short yr)
+        {
+                short m = stoi(get_card_date().substr(0, 2));
+                short y = stoi(get_card_date().substr(2, 2));
+
+                if (y - yr <= 0) 
+                        return -1;
+                else if ((y - yr) == 0 && (m - mt >= 0)) 
+                        return (m - mt);
+                else
+                        return (y - yr) * 12 - (m - mt);          
         }
 
         short option(void)
