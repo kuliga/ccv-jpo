@@ -20,7 +20,6 @@ private:
                 OTHER = 9
         };
 
-        
 public:
         CCV(const string &num = "0000000000000000", const string &date = "0000"): 
                                                         m_card {num, date} {} 
@@ -203,8 +202,6 @@ private:
                 else
                         return (y - yr) * 12 + (m - mt);          
         }
-public: 
-        
 };
 
 void about(void)
