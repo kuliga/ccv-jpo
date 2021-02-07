@@ -76,6 +76,39 @@ public:
                 return vec;
         }
 
+        void validation_info(void)
+        {
+                if (!validate_card()) {
+                        cout << "\nValidation failed!" << endl;
+                } else {
+                        cout << "\nValidation passed!" << endl;
+                        service_provider_info();
+                        card_info();
+                }
+
+        }     
+
+        void date_info(const short &mt, const short &yr)
+        {
+                short date = check_date(mt, yr);
+                if (date == -1)
+                        cout << "Your card is not valid anymore!" << endl;
+                else 
+                        cout << "Your card will be valid for next " << date << " months!" << endl;
+                
+        }
+
+        short option(void)
+        {
+                string option;
+                cin >> option;
+                if ((option.size() == 1) && (check_input(option)))
+                        return stoi(option);
+                else   
+                        return 0;
+        }
+
+private:
         unsigned short vec_sum(const vector<short> &vec)
         {
                 unsigned short sum = 0;
@@ -158,18 +191,6 @@ public:
                 cout << "Control digit: " << get_card_number().substr(15, 1) << endl;
         }
 
-        void validation_info(void)
-        {
-                if (!validate_card()) {
-                        cout << "\nValidation failed!" << endl;
-                } else {
-                        cout << "\nValidation passed!" << endl;
-                        service_provider_info();
-                        card_info();
-                }
-
-        }
-
         short check_date(const short &mt, const short &yr)
         {
                 short m = stoi(get_card_date().substr(0, 2));
@@ -182,26 +203,8 @@ public:
                 else
                         return (y - yr) * 12 + (m - mt);          
         }
-
-        void date_info(const short &mt, const short &yr)
-        {
-                short date = check_date(mt, yr);
-                if (date == -1)
-                        cout << "Your card is not valid anymore!" << endl;
-                else 
-                        cout << "Your card will be valid for next " << date << " months!" << endl;
-                
-        }
-
-        short option(void)
-        {
-                string option;
-                cin >> option;
-                if ((option.size() == 1) && (check_input(option)))
-                        return stoi(option);
-                else   
-                        return 0;
-        }
+public: 
+        
 };
 
 void about(void)
