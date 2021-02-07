@@ -19,6 +19,8 @@ private:
                 TELCOM = 8,
                 OTHER = 9
         };
+
+        
 public:
         CCV(const string &num = "0000000000000000", const string &date = "0000"): 
                                                         m_card {num, date} {} 
@@ -173,7 +175,7 @@ public:
                 short m = stoi(get_card_date().substr(0, 2));
                 short y = stoi(get_card_date().substr(2, 2));
 
-                if (y - yr < 0) 
+                if ((y - yr < 0) || ((y - yr == 0) && (m - mt < 1))) 
                         return -1;
                 else if ((y - yr) == 0 && (m - mt >= 0)) 
                         return (m - mt);
